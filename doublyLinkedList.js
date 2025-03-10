@@ -36,7 +36,7 @@ class DoublyLinkedList {
         }
         this.size++;
     }
-    print() {
+    forwardTraversal() {
         if(this.size === 0) {
             console.log("This list is empty");
         }
@@ -46,18 +46,27 @@ class DoublyLinkedList {
             res.push(curr.value);
             curr = curr.next;
         }
-        console.log(res);
+        console.log("Forward Traversing: ",res.join(" <-> "));
+    }
+    backwardTraversing() {
+        if(this.size === 0) {
+            console.log("This list is empty");
+        } 
+        let curr = this.tail;
+        let res = [];
+        while(curr !== null) {
+            res.push(curr.value);
+            curr = curr.prev;
+        }
+        console.log("Backward traversing: ",res.join(" <-> "));
     }
 }
 
 const list = new DoublyLinkedList();
-list.print();
-list.insertAtBeginning(10);
-list.print();
 list.insertAtBeginning(10);
 list.insertAtBeginning(20);
 list.insertAtBeginning(30);
 list.insertAtBeginning(40);
-list.print();
 list.insertAtEnd(60);
-list.print();
+list.forwardTraversal();
+list.backwardTraversing();
