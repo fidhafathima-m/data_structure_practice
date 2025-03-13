@@ -10,12 +10,14 @@ class LinkedList {
         this.head = null;
         this.size = 0;
     }
+
     isEmpty() {
         return this.size === 0;
     }
+
     insertFront(val) {
         const node = new Node(val);
-        if(this.isEmpty()) {
+        if (this.isEmpty()) {
             this.head = node;
         } else {
             node.next = this.head;
@@ -23,39 +25,60 @@ class LinkedList {
         }
         this.size++;
     }
+
     insertEnd(val) {
         const node = new Node(val);
-        if(this.isEmpty()) {
+        if (this.isEmpty()) {
             this.head = node;
         } else {
             let prev = this.head;
-            while(prev.next) {
+            while (prev.next) {
                 prev = prev.next;
             }
             prev.next = node;
         }
         this.size++;
     }
+
+    insertAtIndex(val, index) {
+        if (index < 0 || index > this.size) return;
+        if (index === 0) {
+            this.insertFront(val);
+        } else {
+            const node = new Node(val);
+            let prev = this.head;
+            for (let i = 0; i < index - 1; i++) {
+                prev = prev.next;
+            }
+            node.next = prev.next;
+            prev.next = node;
+            this.size++;
+        }
+    }
+
     print() {
-        if(this.size === 0) {
+        if (this.size === 0) {
             console.log("List is empty");
+            return;
         }
         let curr = this.head;
         let res = [];
-        while(curr) {
+        while (curr) {
             res.push(curr.val);
             curr = curr.next;
         }
         console.log(res.join(" -> "));
     }
+
     reverse() {
-        if(this.isEmpty()) {
+        if (this.isEmpty()) {
             console.log("List is empty");
+            return;
         }
         let prev = null;
         let curr = this.head;
 
-        while(curr) {
+        while (curr) {
             let next = curr.next;
             curr.next = prev;
             prev = curr;
@@ -65,13 +88,16 @@ class LinkedList {
     }
 }
 
+// Initialize the linked list
 const list = new LinkedList();
-list.print();
+list.print(); // List is empty
 list.insertFront(100);
 list.insertFront(200);
 list.insertFront(300);
-list.print();
+list.print(); // 300 -> 200 -> 100
 list.reverse();
-list.print();
+list.print(); // 100 -> 200 -> 300
 list.insertEnd(500);
-list.print();
+list.print(); // 100 -> 200 -> 300 -> 500
+list.insertAtIndex(600, 2);
+list.print(); // 100 -> 200 -> 600 -> 300 -> 500
