@@ -18,4 +18,21 @@ function permute(str) {
     return res;
 }
 
+// console.log(permute("abc"));
+
+// Another approach
+function stringPermute(str) {
+    let res = [];
+    function permute(s, curr) {
+        if(str.length === 0) res.push(curr);
+        else {
+            for(let i = 0 ; i < s.length; i++) {
+                permute(s.slice(0, i) + s.slice(i + 1), curr + s[i]);
+            }
+        }
+    }
+    permute(str, '');
+    return res;
+}
+
 console.log(permute("abc"));

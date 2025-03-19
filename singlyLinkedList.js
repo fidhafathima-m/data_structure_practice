@@ -149,10 +149,10 @@ list.insertEnd(500);
 list.print(); // 100 -> 200 -> 300 -> 500
 list.insertAtIndex(600, 2);
 list.print(); // 100 -> 200 -> 600 -> 300 -> 500
-list.removeIndex(0);
+console.log("Removed index 0: ", list.removeIndex(0));
 list.print();
 list.removeValue(600);
 list.print();
 list.reverse();
 list.print(); 
-console.log(list.search(100));
+console.log("100 found at index: ", list.search(100));

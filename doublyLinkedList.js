@@ -51,6 +51,14 @@ class DoublyLinkedList {
             this.size--;
         }
     }
+    insertAfter(node, val) {
+        let newNode = new Node(val);
+        newNode.next = node.next;
+        if(node.next) node.next.prev = newNode;
+        node.next = newNode;
+        newNode.prev = node;
+        this.size++;
+    }
     forwardTraversal() {
         if(this.size === 0) {
             console.log("This list is empty");
@@ -86,4 +94,7 @@ list.insertAtEnd(60);
 list.forwardTraversal();
 list.backwardTraversing();
 list.deleteFront(30);
+list.forwardTraversal();
+let node = list.head.next;
+list.insertAfter(node, 100);
 list.forwardTraversal();
