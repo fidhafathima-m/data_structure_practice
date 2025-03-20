@@ -57,14 +57,14 @@ class LinkedList {
     }
 
     removeIndex(index) {
-        if (index < 0 || index >= this.size) return;
+        if(index < 0 || index > this.size) return null;
         let removedNode;
         if(index === 0) {
             removedNode = this.head;
             this.head = this.head.next;
         } else {
             let prev = this.head;
-            for(let i = 0; i < index - 1; i++) {
+            for(let i = 1; i < index - 1; i++) {
                 prev = prev.next;
             }
             removedNode = prev.next;
@@ -90,6 +90,20 @@ class LinkedList {
             this.size--;
             return val;
         }
+    }
+
+    removeMiddle() {
+        if(!this.head || !this.head.next) return null;
+        let fast = this.head;
+        let slow = this.head;
+        let prev = null;
+
+        while(fast && fast.next) {
+            fast = fast.next.next;
+            prev = slow;
+            slow = slow.next;
+        }
+        prev.next = slow.next;
     }
 
     search(val) {
@@ -156,3 +170,5 @@ list.print();
 list.reverse();
 list.print(); 
 console.log("100 found at index: ", list.search(100));
+list.removeMiddle();
+list.print();
