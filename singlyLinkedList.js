@@ -135,20 +135,35 @@ class LinkedList {
     }
 
     reverse() {
-        if (this.isEmpty()) {
-            console.log("List is empty");
-            return;
-        }
-        let prev = null;
+        let stack = [];
         let curr = this.head;
 
-        while (curr) {
-            let next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+        while(curr) {
+            stack.push(curr.val);
+            curr = curr.next;
         }
-        this.head = prev;
+        let res = '';
+        while(stack.length > 0) {
+            res += stack.pop();
+            if(stack.length > 0) {
+                res+= " -> ";
+            }
+        }
+        console.log(res);
+        // if (this.isEmpty()) {
+        //     console.log("List is empty");
+        //     return;
+        // }
+        // let prev = null;
+        // let curr = this.head;
+
+        // while (curr) {
+        //     let next = curr.next;
+        //     curr.next = prev;
+        //     prev = curr;
+        //     curr = next;
+        // }
+        // this.head = prev;
     }
 }
 
