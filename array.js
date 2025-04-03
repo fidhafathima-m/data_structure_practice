@@ -45,7 +45,7 @@ function recursiveSumOfEven(arr, s = 0, c = 0, index = 0) {
 
 function reverseString(str) {
     if(str.length <= 1) return str;
-    return reverseString(str.substring(1)) + str[0];
+    return reverseString(str.slice(1)) + str[0];
 }
 // console.log(reverseString('hello'));
 
@@ -63,5 +63,5 @@ function findMin(arr) {
     let min = findMin(arr.slice(1));
     return Math.min(arr[0], min);
 }
-console.log(findMin([3,2,1,4,5]));
+// console.log(findMin([3,2,1,4,5]));
 

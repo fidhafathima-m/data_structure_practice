@@ -120,6 +120,43 @@ class LinkedList {
         return -1;
     }
 
+    removeDuplicate() {
+        if(this.head === null) return null;
+        let seen = new Set();
+        let curr = this.head;
+
+        seen.add(curr.val);
+        while(curr && curr.next) {
+            if(seen.has(curr.next.val)) {
+                curr.next = curr.next.next;
+            }
+            seen.add(curr.next.val);
+            curr = curr.next;
+        }
+        return this.head;
+    }
+
+    removeOddNode() {
+        if(!this.head) return null;
+        while(this.head && this.head.val % 2 !== 0) {
+            this.head = this.head.next;
+        }
+        if(!this.head) return null;
+
+        let prev = this.head;
+        let curr = this.head.next;
+
+        while(curr) {
+            if(curr.val % 2 !== 0) {
+                prev.next = curr.next;
+            } else {
+                prev = curr;
+            }
+            curr = curr.next;
+        }
+        return this.head;
+    }
+
     print() {
         if (this.size === 0) {
             console.log("List is empty");
@@ -186,4 +223,15 @@ list.reverse();
 list.print(); 
 console.log("100 found at index: ", list.search(100));
 list.removeMiddle();
+list.print();
+list.insertFront(105);
+list.insertFront(200);
+list.insertFront(300);
+list.print();
+list.removeDuplicate();
+list.print();
+list.insertFront(201);
+list.insertFront(304);
+list.print();
+list.removeOddNode();
 list.print();
