@@ -65,3 +65,30 @@ function findMin(arr) {
 }
 // console.log(findMin([3,2,1,4,5]));
 
+function multiply(arr, index = 0, product = 1) {
+    if(index === arr.length) return product;
+    return multiply(arr, index + 1, product * arr[index]);
+}
+// console.log(multiply([1,2,3,4,5]));
+
+// Write a recursive function to calculate the Fibonacci number at a given position, n. 
+// For example: fibonacci(4) should return 3.
+
+function fibonacciAtPos(n) {
+    if(n <= 1) return n;
+    return fibonacciAtPos(n - 1) + fibonacciAtPos(n - 2);
+}
+
+// console.log(fibonacciAtPos(4));
+
+// Write a recursive function to reverse a string. 
+// For instance, reverseString("hello") should return "olleh".
+
+function reverseStrings(str) {
+    if(str.length === 1) return str;
+    return reverseStrings(str.slice(1)) + str[0];
+}
+
+console.log(reverseStrings('hello'));
+
+
