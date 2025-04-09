@@ -89,6 +89,38 @@ function reverseStrings(str) {
     return reverseStrings(str.slice(1)) + str[0];
 }
 
-console.log(reverseStrings('hello'));
+// console.log(reverseStrings('hello'));
 
+// Check whether an array is sorted or not
 
+function sortedOrNot(arr, index = 0) {
+    if(index === arr.length - 1) return true;
+    return arr[index] <= arr[index + 1] && sortedOrNot(arr, index + 1);
+}
+// console.log(sortedOrNot([1,6,7,2,1]));
+
+// Linear search with recursion
+function linearSearch(arr, target, index = 0) {
+    if(index === arr.length) {
+        return "Not found";
+    }  
+    if(arr[index] === target) {
+        return `Found at ${index}`;
+    } else {
+        return linearSearch(arr, target, index + 1);
+    }
+}
+// console.log(linearSearch([2,1,4,6,3], 2));
+
+// Linear search with recursion
+function linearSearchAllIndex(arr, target, index = 0, res = []) {
+    if(index === arr.length) {
+        return res;
+    }  
+    if(arr[index] === target) {
+        res.push(index);
+    } 
+    return linearSearchAllIndex(arr, target, index + 1, res);
+    
+}
+console.log(linearSearchAllIndex([2,1,4,4,6,3], 4));

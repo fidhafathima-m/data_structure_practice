@@ -82,5 +82,46 @@ function mostRepeatingCharacter(str) {
 }
 
 
-console.log(mostRepeatingCharacter("aabbcc")); 
-console.log(mostRepeatingCharacter("abaccccdeff")); 
+// console.log(mostRepeatingCharacter("aabbcc")); 
+// console.log(mostRepeatingCharacter("abaccccdeff")); 
+
+// Skip a's from string
+
+function skipA(str, index = 0) {
+    if(index === str.length) return "";
+    if(str[index] === 'a') {
+        return skipA(str, index + 1);
+    }
+    return str[index] + skipA(str, index + 1)
+}
+// console.log(skipA("Banana"));
+
+// Subsequence of strings
+function subsequence(processed, unprocessed, res = []) {
+    if(unprocessed === "") {
+       res.push(processed);
+       return;
+    }
+    let ch = unprocessed.charAt(0);
+    subsequence(processed + ch, unprocessed.substring(1), res);
+    subsequence(processed, unprocessed.substring(1), res);
+    return res;
+}
+
+// console.log(subsequence("", "abc"));
+
+// Subsequence of strings with ASCII
+function subsequenceASCII(processed, unprocessed, res = []) {
+    if(unprocessed === "") {
+       res.push(processed);
+       return;
+    }
+    let ch = unprocessed.charAt(0);
+    subsequenceASCII(processed + ch, unprocessed.substring(1), res);
+    subsequenceASCII(processed, unprocessed.substring(1), res);
+    subsequenceASCII(processed + ch.charCodeAt(0), unprocessed.substring(1), res);
+    return res;
+}
+
+console.log(subsequenceASCII("", "abc"));
+

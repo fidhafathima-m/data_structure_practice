@@ -108,5 +108,7 @@ function countZeros(n, count = 0) {
         return countZeros(Math.floor(n / 10), count);
     }
 }
-console.log(countZeros(30402));
+// console.log(countZeros(30402));
+
+
 
